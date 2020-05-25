@@ -1,0 +1,81 @@
+entity Company{
+     name String required
+}
+
+entity Building{
+	name String required
+}
+
+entity Floor{
+	name String required
+}
+
+entity Location{
+	name String required
+	type LocationType
+}
+
+enum LocationType {
+   DOOR, TURNSTYLE
+}
+
+entity Device{
+    deviceId String required
+	description String
+	type DeviceType
+}
+
+enum DeviceType {
+   INPUT, OUTPUT
+}
+
+entity Person{
+     name String required
+     surname String required
+     uuid UUID
+}
+
+entity PersonType {
+   	 name String required
+}
+
+entity Image{
+    image ImageBlob required
+    afid AnyBlob required
+}
+
+enum RecordStatus {
+   WHITE_LIST_DETECTED, NO_MATCHING
+}  
+
+entity Record{
+	insert Instant
+	path String
+	fileSentDate Instant 
+    fileCreationDate Instant
+	processStartDate Instant
+    processFinishDate Instant
+    status RecordStatus 
+    afid AnyBlob
+	isProcessed Boolean
+}
+
+relationship OneToMany {
+    Person{images} to Image
+    Person{personTypes} to PersonType
+}
+
+relationship ManyToMany {
+    Person{personTypes} to PersonType
+}
+
+relationship ManyToOne {
+    Record{device} to Device
+	Record{image} to Image
+	Device{location} to Location
+	Device{floor} to Floor
+	Floor{store} to Building
+	Building{company} to Company
+	Person{type} to PersonType
+	Record{Person} to Person
+}
