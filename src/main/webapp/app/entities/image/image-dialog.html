@@ -1,0 +1,88 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myImageLabel" data-translate="masterfaceproApp.image.home.createOrEditLabel">Create or edit a Image</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.image.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.image.id" readonly />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setImage($file, vm.image)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="masterfaceproApp.image.image" for="field_image">Image</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.image.imageContentType + ';base64,' + vm.image.image}}" style="max-height: 100px;" ng-if="vm.image.image" alt="image image"/>
+                <div ng-if="vm.image.image" class="help-block clearfix">
+                    <span class="pull-left">{{vm.image.imageContentType}}, {{vm.byteSize(vm.image.image)}}</span>
+                    <button type="button" ng-click="vm.image.image=null;vm.image.imageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setImage($file, vm.image)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="image" id="field_image"
+                    ng-model="vm.image.image"
+                    required/>
+            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                    ng-model="vm.image.imageContentType" />
+            <div ng-show="editForm.image.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.image.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAfid($file, vm.image)">
+            <label class="control-label" data-translate="masterfaceproApp.image.afid" for="field_afid">Afid</label>
+            <div>
+                <div ng-if="vm.image.afid" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.image.afidContentType, vm.image.afid)" data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.image.afidContentType}}, {{vm.byteSize(vm.image.afid)}}</span>
+                    <button type="button" ng-click="vm.image.afid=null;vm.image.afidContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAfid($file, vm.image)" data-translate="entity.action.addblob">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="afid" id="field_afid"
+                    ng-model="vm.image.afid"
+                    required/>
+            <input type="hidden" class="form-control" name="afidContentType" id="field_afidContentType"
+                    ng-model="vm.image.afidContentType" />
+            <div ng-show="editForm.afid.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.afid.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="masterfaceproApp.image.person" for="field_person">Person</label>
+            <select class="form-control" id="field_person" name="person" ng-model="vm.image.person" ng-options="person as person.id for person in vm.people track by person.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

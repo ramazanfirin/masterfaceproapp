@@ -1,0 +1,9 @@
+{
+    "masterfaceproApp": {
+        "RecordStatus" : {
+            "null": "",
+            "WHITE_LIST_DETECTED": "WHITE_LIST_DETECTED",
+            "NO_MATCHING": "NO_MATCHING"
+        }
+    }
+}

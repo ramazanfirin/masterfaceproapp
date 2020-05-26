@@ -7,6 +7,15 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "company": "Company",
+                "building": "Building",
+                "floor": "Floor",
+                "location": "Location",
+                "device": "Device",
+                "person": "Person",
+                "staffType": "Staff Type",
+                "image": "Image",
+                "record": "Record",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

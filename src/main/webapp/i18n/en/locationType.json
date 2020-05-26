@@ -1,0 +1,9 @@
+{
+    "masterfaceproApp": {
+        "LocationType" : {
+            "null": "",
+            "DOOR": "DOOR",
+            "TURNSTYLE": "TURNSTYLE"
+        }
+    }
+}

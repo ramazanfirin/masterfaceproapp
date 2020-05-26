@@ -1,0 +1,134 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myRecordLabel" data-translate="masterfaceproApp.record.home.createOrEditLabel">Create or edit a Record</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.record.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.record.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.insert" for="field_insert">Insert</label>
+                <div class="input-group">
+                    <input id="field_insert" type="text" class="form-control" name="insert" datetime-picker="{{dateformat}}" ng-model="vm.record.insert" is-open="vm.datePickerOpenStatus.insert"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('insert')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.path" for="field_path">Path</label>
+            <input type="text" class="form-control" name="path" id="field_path"
+                    ng-model="vm.record.path"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.fileSentDate" for="field_fileSentDate">File Sent Date</label>
+                <div class="input-group">
+                    <input id="field_fileSentDate" type="text" class="form-control" name="fileSentDate" datetime-picker="{{dateformat}}" ng-model="vm.record.fileSentDate" is-open="vm.datePickerOpenStatus.fileSentDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fileSentDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.fileCreationDate" for="field_fileCreationDate">File Creation Date</label>
+                <div class="input-group">
+                    <input id="field_fileCreationDate" type="text" class="form-control" name="fileCreationDate" datetime-picker="{{dateformat}}" ng-model="vm.record.fileCreationDate" is-open="vm.datePickerOpenStatus.fileCreationDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('fileCreationDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.processStartDate" for="field_processStartDate">Process Start Date</label>
+                <div class="input-group">
+                    <input id="field_processStartDate" type="text" class="form-control" name="processStartDate" datetime-picker="{{dateformat}}" ng-model="vm.record.processStartDate" is-open="vm.datePickerOpenStatus.processStartDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('processStartDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.processFinishDate" for="field_processFinishDate">Process Finish Date</label>
+                <div class="input-group">
+                    <input id="field_processFinishDate" type="text" class="form-control" name="processFinishDate" datetime-picker="{{dateformat}}" ng-model="vm.record.processFinishDate" is-open="vm.datePickerOpenStatus.processFinishDate"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('processFinishDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.status" for="field_status">Status</label>
+            <select class="form-control" name="status" ng-model="vm.record.status" id="field_status">
+                <option value="WHITE_LIST_DETECTED" data-translate="masterfaceproApp.RecordStatus.WHITE_LIST_DETECTED">WHITE_LIST_DETECTED</option>
+                <option value="NO_MATCHING" data-translate="masterfaceproApp.RecordStatus.NO_MATCHING">NO_MATCHING</option>
+            </select>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setAfid($file, vm.record)">
+            <label class="control-label" data-translate="masterfaceproApp.record.afid" for="field_afid">Afid</label>
+            <div>
+                <div ng-if="vm.record.afid" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.record.afidContentType, vm.record.afid)" data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.record.afidContentType}}, {{vm.byteSize(vm.record.afid)}}</span>
+                    <button type="button" ng-click="vm.record.afid=null;vm.record.afidContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setAfid($file, vm.record)" data-translate="entity.action.addblob">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="afid" id="field_afid"
+                    ng-model="vm.record.afid"
+                    />
+            <input type="hidden" class="form-control" name="afidContentType" id="field_afidContentType"
+                    ng-model="vm.record.afidContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="masterfaceproApp.record.isProcessed" for="field_isProcessed">Is Processed</label>
+                <input type="checkbox" name="isProcessed" id="field_isProcessed"
+                          ng-model="vm.record.isProcessed"/>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="masterfaceproApp.record.device" for="field_device">Device</label>
+            <select class="form-control" id="field_device" name="device" ng-model="vm.record.device" ng-options="device as device.id for device in vm.devices track by device.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="masterfaceproApp.record.image" for="field_image">Image</label>
+            <select class="form-control" id="field_image" name="image" ng-model="vm.record.image" ng-options="image as image.id for image in vm.images track by image.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="masterfaceproApp.record.person" for="field_person">Person</label>
+            <select class="form-control" id="field_person" name="person" ng-model="vm.record.person" ng-options="person as person.id for person in vm.people track by person.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

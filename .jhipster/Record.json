@@ -1,0 +1,69 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "device",
+            "otherEntityName": "device",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "person",
+            "otherEntityName": "person",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "insert",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "path",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fileSentDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "fileCreationDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "processStartDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "processFinishDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "RecordStatus",
+            "fieldValues": "WHITE_LIST_DETECTED,NO_MATCHING"
+        },
+        {
+            "fieldName": "afid",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        },
+        {
+            "fieldName": "isProcessed",
+            "fieldType": "Boolean"
+        }
+    ],
+    "changelogDate": "20200526061611",
+    "entityTableName": "record",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

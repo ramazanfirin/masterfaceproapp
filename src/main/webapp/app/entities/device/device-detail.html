@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="masterfaceproApp.device.detail.title">Device</span> {{vm.device.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="masterfaceproApp.device.deviceId">Device Id</span></dt>
+        <dd>
+            <span>{{vm.device.deviceId}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.device.description">Description</span></dt>
+        <dd>
+            <span>{{vm.device.description}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.device.type">Type</span></dt>
+        <dd>
+            <span data-translate="{{'masterfaceproApp.DeviceType.' + vm.device.type}}">{{vm.device.type}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.device.location">Location</span></dt>
+        <dd>
+            <a ui-sref="location-detail({id:vm.device.location.id})">{{vm.device.location.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="device-detail.edit({id:vm.device.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

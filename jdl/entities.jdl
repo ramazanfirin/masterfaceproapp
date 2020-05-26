@@ -32,10 +32,10 @@ enum DeviceType {
 entity Person{
      name String required
      surname String required
-     uuid UUID
+     uuid String
 }
 
-entity PersonType {
+entity StaffType {
    	 name String required
 }
 
@@ -62,20 +62,19 @@ entity Record{
 
 relationship OneToMany {
     Person{images} to Image
-    Person{personTypes} to PersonType
 }
 
 relationship ManyToMany {
-    Person{personTypes} to PersonType
+    Location{whiteList} to StaffType    
+	Person{staffType} to StaffType    
 }
 
 relationship ManyToOne {
     Record{device} to Device
 	Record{image} to Image
 	Device{location} to Location
-	Device{floor} to Floor
+	Location{floor} to Floor
 	Floor{store} to Building
 	Building{company} to Company
-	Person{type} to PersonType
 	Record{Person} to Person
 }

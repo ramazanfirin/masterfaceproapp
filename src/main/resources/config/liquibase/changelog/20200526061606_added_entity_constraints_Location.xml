@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Location.
+    -->
+    <changeSet id="20200526061606-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="floor_id"
+                                 baseTableName="location"
+                                 constraintName="fk_location_floor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="floor"/>
+
+        <addForeignKeyConstraint baseColumnNames="locations_id"
+                                 baseTableName="location_white_list"
+                                 constraintName="fk_location_white_list_locations_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="location"/>
+        <addForeignKeyConstraint baseColumnNames="white_lists_id"
+                                 baseTableName="location_white_list"
+                                 constraintName="fk_location_white_list_white_lists_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="staff_type"/>
+        
+    </changeSet>
+</databaseChangeLog>

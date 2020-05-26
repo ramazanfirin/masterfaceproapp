@@ -1,0 +1,70 @@
+
+<div>
+    <h2><span data-translate="masterfaceproApp.record.detail.title">Record</span> {{vm.record.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="masterfaceproApp.record.insert">Insert</span></dt>
+        <dd>
+            <span>{{vm.record.insert | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.path">Path</span></dt>
+        <dd>
+            <span>{{vm.record.path}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.fileSentDate">File Sent Date</span></dt>
+        <dd>
+            <span>{{vm.record.fileSentDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.fileCreationDate">File Creation Date</span></dt>
+        <dd>
+            <span>{{vm.record.fileCreationDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.processStartDate">Process Start Date</span></dt>
+        <dd>
+            <span>{{vm.record.processStartDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.processFinishDate">Process Finish Date</span></dt>
+        <dd>
+            <span>{{vm.record.processFinishDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'masterfaceproApp.RecordStatus.' + vm.record.status}}">{{vm.record.status}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.afid">Afid</span></dt>
+        <dd>
+            <div ng-if="vm.record.afid">
+                <a ng-click="vm.openFile(vm.record.afidContentType, vm.record.afid)" data-translate="entity.action.open">open</a>
+                {{vm.record.afidContentType}}, {{vm.byteSize(vm.record.afid)}}
+            </div>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.isProcessed">Is Processed</span></dt>
+        <dd>
+            <span>{{vm.record.isProcessed}}</span>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.device">Device</span></dt>
+        <dd>
+            <a ui-sref="device-detail({id:vm.record.device.id})">{{vm.record.device.id}}</a>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.image">Image</span></dt>
+        <dd>
+            <a ui-sref="image-detail({id:vm.record.image.id})">{{vm.record.image.id}}</a>
+        </dd>
+        <dt><span data-translate="masterfaceproApp.record.person">Person</span></dt>
+        <dd>
+            <a ui-sref="person-detail({id:vm.record.person.id})">{{vm.record.person.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="record-detail.edit({id:vm.record.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,9 @@
+{
+    "masterfaceproApp": {
+        "DeviceType" : {
+            "null": "",
+            "INPUT": "INPUT",
+            "OUTPUT": "OUTPUT"
+        }
+    }
+}
